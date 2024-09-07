@@ -15,6 +15,7 @@ function xxx_scripts() {
     wp_enqueue_style('swiper-css' , THEME_URL . 'asset/css/swiper.min.css');
     wp_enqueue_style('aos-css' , THEME_URL . 'asset/css/aos.css');
     wp_enqueue_style('style-css' , THEME_URL . 'asset/css/style.css');
+    wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/responsive.css');
 
     wp_enqueue_script( 'boostrap-js', get_template_directory_uri() . '/asset/js/bootstrap.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/asset/js/swiper-bundle.min.js', array( ), THEME_VERSION, true );
