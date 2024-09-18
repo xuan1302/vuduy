@@ -26,14 +26,20 @@ function xxx_scripts() {
 add_action( 'wp_enqueue_scripts', 'xxx_scripts',10 );
 
 
-// if ( ! function_exists( 'ssls_setup' ) ) :
-//     function ssls_setup() {
-//         register_nav_menus( array(
-//             'menu-footer'   => esc_html__( 'Menu footer', 'SSls' ),
-//         ) );
-//     }
-// endif;
-// add_action( 'after_setup_theme', 'ssls_setup' );
+ if ( ! function_exists( 'ssls_setup' ) ) :
+     function ssls_setup() {
+         register_nav_menus( array(
+             'main-menu'   => esc_html__( 'Menu Main', 'SSls' ),
+         ) );
+         register_nav_menus( array(
+             'footer-menu'   => esc_html__( 'Menu Footer', 'SSls' ),
+         ) );
+         register_nav_menus( array(
+             'footer-menu-copyright'   => esc_html__( 'Menu Footer Copyright', 'SSls' ),
+         ) );
+     }
+ endif;
+ add_action( 'after_setup_theme', 'ssls_setup' );
 
 add_image_size( 'blog-thumbnail', 420,240, true );
 
@@ -62,3 +68,11 @@ if( function_exists('acf_add_options_page') ) {
     ));
     
 }
+
+function search_filter_woocommerce( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+        // Chỉ tìm kiếm trong sản phẩm
+        $query->set( 'post_type', 'product' );
+    }
+}
+add_action( 'pre_get_posts', 'search_filter_woocommerce' );
