@@ -16,12 +16,13 @@ function xxx_scripts() {
     wp_enqueue_style('aos-css' , THEME_URL . 'asset/css/aos.css');
     wp_enqueue_style('style-css' , THEME_URL . 'asset/css/style.css');
     wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/responsive.css');
+    wp_enqueue_style('aboutus-css' , THEME_URL . 'asset/css/about-us.css');
 
     wp_enqueue_script( 'boostrap-js', get_template_directory_uri() . '/asset/js/bootstrap.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/asset/js/swiper-bundle.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'aos-js', get_template_directory_uri() . '/asset/js/aos.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/asset/js/custom.js', array( ), THEME_VERSION, true );
-        wp_enqueue_script( 'common-js', get_template_directory_uri() . '/asset/js/common.js', array( ), THEME_VERSION, true );
+    wp_enqueue_script( 'common-js', get_template_directory_uri() . '/asset/js/common.js', array( ), THEME_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'xxx_scripts',10 );
 

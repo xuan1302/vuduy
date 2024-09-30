@@ -1,0 +1,150 @@
+:root {
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Open Sans", sans-serif;
+}
+.main-title{
+    font-family: var(--font-primary);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #121212;
+    margin-bottom: 0;
+}
+.section-our-service .features-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+.branding-stories-description p{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 0;
+    color: #353535;
+}
+.section-branding-stories .branding-stories-title-contain{
+    margin-bottom: 48px;
+}
+.milestones_branding_contain .milestones_year{
+    bottom: 8px;
+    left: 20px;
+}
+.milestones_year span{
+    font-family: var(--font-secondary);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58px;
+    color: #FFF;
+}
+.milestones_description p{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    color: #353535;
+    margin-top: 24px;
+    margin-bottom: 0;
+}
+.milestones_branding_contain .milestones_branding_item_1, .milestones_branding_contain .milestones_branding_item_3{
+    padding-top: 64px;
+}
+.content-about-us .section-branding-stories{
+    padding: 64px 0;
+}
+.vision-mission-title-contain{
+    margin-bottom: 20px;
+}
+.section-vision-mission .vision_mission_content{
+    padding: 24px 0;
+}
+.vision_mission_content p{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+}
+.content-about-us  .section-vision-mission{
+    padding: 64px 0;
+    background: #F4F4F4;
+}
+.content-about-us .section-our-service{
+    padding: 64px 0;
+}
+.features-container .featured-box{
+    display: flex;
+}
+.featured-box .icon-box-img{
+    flex-basis: 18%;
+}
+.icon-box-img img{
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
+}
+.icon-box-text h3{
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: left;
+    color: #121212;
+    margin-bottom: 8px;
+}
+.icon-box-text p{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+    color: #353535;
+    margin-bottom: 8px;
+}
+.featured-box .icon-box-text{
+    margin-left: 20px;
+}
+.section-slide-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide-image-pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.slide-image-pagination span{
+    width: 10px;
+    height: 10px;
+    background: #DCDCDC;
+    display: block;
+    border-radius: 100%;
+    margin: 0 5px;
+}
+.slide-image-pagination span.swiper-pagination-bullet-active{
+    background: #004A06;
+}
+@media (max-width: 768px) {
+    .content-about-us .section-branding-stories{
+        padding: 48px 0;
+    }
+    .main-title{
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+        text-align: left;
+    }
+    .branding-stories-description p{
+        font-size: 16px;
+        line-height: 26px;
+        text-align: left;
+        margin-top: 24px;
+    }
+    .section-branding-stories .branding-stories-title-contain{
+        margin-bottom: 32px;
+    }
+    .milestones_description p {
+        max-width: 306px;
+    }
+}

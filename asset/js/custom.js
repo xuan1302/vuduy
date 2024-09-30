@@ -2,6 +2,17 @@
   AOS.init();
   
   //slide
+  var slide_image_about_us = new Swiper(".slide-image-about-us", {
+    slidesPerView: 2,
+    spaceBetween: 8,
+    loop:true,
+    centeredSlides: true,
+    pagination: {
+      el: ".slide-image-pagination",
+      clickable: true,
+    },
+  });
+
   var swiper = new Swiper(".list-img-slide", {
     slidesPerView: 4,
     spaceBetween: 15,
