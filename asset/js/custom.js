@@ -2,34 +2,30 @@
   AOS.init();
   
   //slide
-  var swiper = new Swiper(".list-img-slide", {
-    slidesPerView: 4,
-    spaceBetween: 15,
-    loop: true,
+  var home_slide = new Swiper(".slide-home", {
+    slidesPerView: 1,
+    spaceBetween: 0,
     // centeredSlides: true,
+    loop: true,
     autoplay: {
-      delay: 2500,
+      delay: 3500,
       disableOnInteraction: false,
     },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-      },
-      640: {
-        slidesPerView: 2,
-      },
-      768: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 4,
-      },
+    pagination: {
+      el: ".swiper-pagination-slide-home",
+      clickable: true,
     },
-    // pagination: {
-    //   el: ".swiper-pagination",
-    //   clickable: true,
-    // },
   });
 
+  $('.content-process .item-process:nth-child(1)').addClass('active');
+  $('.content-process .item-process').hover(
+      function() {
+        $(this).addClass('active').siblings().removeClass('active');
+      },
+      function() {
+        $(this).removeClass('active');
+        $('.content-process .item-process:nth-child(1)').addClass('active');
+      }
+  );
 
 }(jQuery));

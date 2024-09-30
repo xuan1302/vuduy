@@ -21,6 +21,7 @@ $hotline_footer = get_field( "hotline_footer", 'option' );
 $email_footer = get_field( "email_footer", 'option' );
 $web_footer = get_field( "web_footer", 'option' );
 $coppy_right = get_field( "web_footer", 'option' );
+$iframe_facebook = get_field( "iframe_facebook", 'option' );
 
 ?>
 
@@ -110,7 +111,9 @@ $coppy_right = get_field( "web_footer", 'option' );
                                 </button>
                             </form>
                         </div>
-                        <div class="fanpage-fb"></div>
+                        <div class="fanpage-fb">
+                            <?php echo $iframe_facebook; ?>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
