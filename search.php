@@ -1,53 +1,40 @@
 <?php
-/**
- * The template for displaying search results pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @package Anonymous
- */
+get_header(); // Gọi phần header của trang
 
-get_header();
-?>
+if ( have_posts() ) : ?>
+    <header class="page-header">
+        <h1 class="page-title">
+            <?php
+            /* Hiển thị tiêu đề trang kết quả tìm kiếm */
+            printf( esc_html__( 'Kết quả tìm kiếm cho: %s', 'your-theme-textdomain' ), '<span>' . get_search_query() . '</span>' );
+            ?>
+        </h1>
+    </header>
 
-	<main id="primary" class="site-main container">
+    <?php
+    /* Bắt đầu vòng lặp kết quả tìm kiếm */
+    while ( have_posts() ) : the_post();
 
-		<?php if ( have_posts() ) : ?>
+        if ( 'product' === get_post_type() ) {
+            wc_get_template_part( 'content', 'product' ); // Sử dụng template WooCommerce để hiển thị sản phẩm
+        }
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'anonymous' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
+    endwhile;
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+    /* Hiển thị pagination nếu có nhiều kết quả */
+    the_posts_navigation();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+else : ?>
 
-			endwhile;
+    <header class="page-header">
+        <h1 class="page-title"><?php esc_html_e( 'Không tìm thấy kết quả nào', 'your-theme-textdomain' ); ?></h1>
+    </header>
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+    <div class="no-results">
+        <p><?php esc_html_e( 'Không có kết quả phù hợp với từ khóa tìm kiếm của bạn. Hãy thử lại với từ khóa khác.', 'your-theme-textdomain' ); ?></p>
+    </div>
 
 <?php
-get_sidebar();
-get_footer();
+endif;
+
+get_footer(); // Gọi phần footer của trang
