@@ -179,3 +179,25 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/custom-functions.php';
 
 //require get_template_directory() . '/inc/custom-postype.php';
+// define('WOOCOMMERCE_USE_CSS', false);
+// add_action('woocommerce_single_product_summary', 'custom_add_to_cart_for_empty_price', 31);
+
+// function custom_add_to_cart_for_empty_price() {
+//     global $product;
+
+//     if (!$product->get_price()) {
+//         // Hiển thị nút thêm vào giỏ hàng cho sản phẩm không có giá
+//         echo '<a href="?add-to-cart=' . esc_attr($product->get_id()) . '" class="button alt">Thêm Vào Giỏ Hàng</a>';
+//     }
+// }
+
+function allow_empty_price_add_to_cart($is_purchasable, $product) {
+    if ($product->get_price() === '') {
+        $is_purchasable = true;
+    }
+    return $is_purchasable;
+}
+add_filter('woocommerce_is_purchasable', 'allow_empty_price_add_to_cart', 10, 2);
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
