@@ -246,6 +246,16 @@ function custom_product_tabs($tabs) {
 }
 
 function custom_product_tab_content() {
-    echo '<h2>Chính Sách Sản Phẩm</h2>';
     echo '<p>Nội dung về chính sách của sản phẩm.</p>';
 }
+
+function allow_empty_price_add_to_cart($is_purchasable, $product) {
+    if ($product->get_price() === '') {
+        $is_purchasable = true;
+    }
+    return $is_purchasable;
+}
+add_filter('woocommerce_is_purchasable', 'allow_empty_price_add_to_cart', 10, 2);
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );

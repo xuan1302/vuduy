@@ -38,5 +38,22 @@
         $('.content-process .item-process:nth-child(1)').addClass('active');
       }
   );
+  $('.wc-tabs li a, .woocommerce-tabs ul.tabs li a').on('click', function(e) {
+    e.preventDefault();
+    console.log('aaaa');
+    // Remove active class from all tabs
+    $('.wc-tabs li, .woocommerce-tabs ul.tabs li').removeClass('active');
+    $('.woocommerce-Tabs-panel').hide();
+
+    // Add active class to the clicked tab and show its content
+    $(this).closest('li').addClass('active');
+    var panelId = $(this).attr('href');
+    $(panelId).show();
+});
+
+  // Ensure the first tab and its content are active initially
+  // $('.wc-tabs li:first-child, .woocommerce-tabs ul.tabs li:first-child').addClass('active');
+  // $('.woocommerce-Tabs-panel:first-child').show();
+
 
 }(jQuery));

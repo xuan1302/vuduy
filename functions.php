@@ -191,13 +191,3 @@ require get_template_directory() . '/inc/custom-functions.php';
 //     }
 // }
 
-function allow_empty_price_add_to_cart($is_purchasable, $product) {
-    if ($product->get_price() === '') {
-        $is_purchasable = true;
-    }
-    return $is_purchasable;
-}
-add_filter('woocommerce_is_purchasable', 'allow_empty_price_add_to_cart', 10, 2);
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
