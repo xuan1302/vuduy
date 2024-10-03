@@ -24,7 +24,7 @@ if ( $related_products ) : ?>
 	<section class="related products">
 
 		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Sản phẩm cùng loại', 'woocommerce' ) );
 
 		if ( $heading ) :
 			?>
@@ -32,19 +32,32 @@ if ( $related_products ) : ?>
 		<?php endif; ?>
 		
 		<?php woocommerce_product_loop_start(); ?>
+			<div class="row">
+				<?php foreach ( $related_products as $related_product ) : ?>
 
-			<?php foreach ( $related_products as $related_product ) : ?>
+						<?php
+						$post_object = get_post( $related_product->get_id() );
 
-					<?php
-					$post_object = get_post( $related_product->get_id() );
-
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-
-					wc_get_template_part( 'content', 'product' );
-					?>
-
-			<?php endforeach; ?>
-
+						setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+						?>
+							<div class="custom-related-product-item col-12 col-xl-3">
+								<div class="custom-product-image">
+									<a href="<?php echo esc_url( get_permalink( $related_product->get_id() ) );?>">
+										<?php echo $related_product->get_image(); ?>
+									</a>
+								</div>
+								<div class="custom-product-details">
+									<a href="<?php echo esc_url( get_permalink( $related_product->get_id() ) ); ?>" class="button add-to-cart-button">
+										<h3 class="woocommerce-loop-product__title"><?php echo esc_html( $related_product->get_name() ); ?></h3>
+									</a>
+									<div class="woocommerce-loop-product__description">
+										<?php echo wp_kses_post( $related_product->get_description() ); ?>
+									</div>
+								</div>
+							</div>
+		
+				<?php endforeach; ?>
+			</div>
 		<?php woocommerce_product_loop_end(); ?>
 
 	</section>

@@ -52,16 +52,26 @@ if ( post_password_required() ) {
     			}?>
 				<?php
 				 	if ($product->get_price() === '') {
-						echo '<p class="contact price">Giá liên hệ</p>';
+						echo '<p class="contact-price">Giá liên hệ</p>';
+					}
+					else{
+						echo '<div class="custom-product-price">';
+						echo $product->get_price_html(); // This displays the product price in the HTML format (includes sale price)
+						echo '</div>';
 					}
 				?>
 				<?php
 					$excerpt = $product->get_short_description();
-					if ( ! empty( $excerpt ) ) {
+					if ( !empty( $excerpt ) ) {
 						echo '<div class="product-excerpt">' . $excerpt . '</div>';
 					}
+
 				?>
 				<?php  woocommerce_template_single_add_to_cart(); ?>
+				
+				<div class="custom-contact-btn">
+					<a href="<?php echo get_field('link_contact_consulting', 'option') ?>" target="_blank">liên hệ nhận tư vấn</a>
+				</div>
 				<?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
@@ -87,7 +97,9 @@ if ( post_password_required() ) {
 	 * @hooked woocommerce_upsell_display - 15
 	 * @hooked woocommerce_output_related_products - 20
 	 */
+
 	do_action( 'woocommerce_after_single_product_summary' );
+	// echo related_product();
 	?>
 </div>
 

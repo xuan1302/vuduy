@@ -49,6 +49,22 @@
     $(this).closest('li').addClass('active');
     var panelId = $(this).attr('href');
     $(panelId).show();
+  });
+  $('.quantity-minus').click(function() {
+    var qty = $(this).parent().find('.custom-quantity-input');
+    var currentVal = parseInt(qty.val(), 10);
+    if (!isNaN(currentVal) && currentVal > 1) {
+        qty.val(currentVal - 1).trigger('change');
+    }
+});
+
+// Increase quantity
+$('.quantity-plus').click(function() {
+    var qty = $(this).parent().find('.custom-quantity-input'); // Update to find the correct input field
+    var currentVal = parseInt(qty.val(), 10);
+    if (!isNaN(currentVal)) {
+        qty.val(currentVal + 1).trigger('change');
+    }
 });
 
   // Ensure the first tab and its content are active initially
