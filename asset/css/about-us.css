@@ -147,4 +147,43 @@
     .milestones_description p {
         max-width: 306px;
     }
+    .milestones_branding_contain .milestones_branding_item_1, .milestones_branding_contain .milestones_branding_item_3{
+        text-align: -webkit-right;
+        padding-top: 24px;
+    }
+    .milestones_branding_item_1 .milestones_year, .milestones_branding_item_3 .milestones_year{
+        left: 106px;
+    }
+    .milestones_branding_contain .milestones_branding_item_2{
+        padding-top: 24px;
+    }
+    .content-about-us .section-vision-mission{
+        padding: 48px 0;
+    }
+    .section-vision-mission .vision_mission_content{
+        padding: 0;
+    }
+    .content-about-us .section-our-service {
+        padding: 48px 0;
+    }
+    .section-our-service .our-service-title{
+        margin-bottom: 32px;
+    }
+    .features-container .featured-box {
+        flex-direction: column;
+    }
+    .featured-box .icon-box-text{
+        margin-left: 0;
+    }
+    .icon-box-text h3{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .featured-box .icon-box-img{
+        margin-bottom: 20px;
+        flex-basis: unset;
+    }
+    .slide-image-pagination {
+        margin-top: 32px;
+    }
 }
