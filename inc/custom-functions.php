@@ -39,6 +39,9 @@ add_action( 'wp_enqueue_scripts', 'xxx_scripts',10 );
          register_nav_menus( array(
              'footer-menu-copyright'   => esc_html__( 'Menu Footer Copyright', 'SSls' ),
          ) );
+         register_nav_menus( array(
+             'main-menu-mobile'   => esc_html__( 'Menu mobile', 'SSls' ),
+         ) );
      }
  endif;
  add_action( 'after_setup_theme', 'ssls_setup' );
@@ -176,6 +179,13 @@ function handle_get_product_san_pham_ban_chay() {
                     'terms'    => $category_id,
                 ),
             ),
+            'meta_query' => [
+                [
+                    'key'     => 'product_best_salling',
+                    'value'   => 1,
+                    'compare' => '=', // So sánh bằng
+                ],
+            ],
         );
 
         $query = new WP_Query( $args );

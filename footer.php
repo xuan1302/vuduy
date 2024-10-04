@@ -91,7 +91,6 @@ $iframe_facebook = get_field( "iframe_facebook", 'option' );
                     </div>
                     <div class="col-md-3">
                         <nav id="site-navigation-main-footer" class="header-main-navigation-footer">
-                            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu Footer', 'anonymous' ); ?></button>
                             <?php
                             wp_nav_menu(
                                 array(
@@ -124,7 +123,6 @@ $iframe_facebook = get_field( "iframe_facebook", 'option' );
                             </div>
                             <div class="right-cp">
                                 <nav id="site-navigation-main-footer-cp" class="header-main-navigation-footer-cp">
-                                    <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu Footer', 'anonymous' ); ?></button>
                                     <?php
                                     wp_nav_menu(
                                         array(

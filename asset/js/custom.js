@@ -72,4 +72,21 @@ $('.quantity-plus').click(function() {
   // $('.woocommerce-Tabs-panel:first-child').show();
 
 
+  $('.icon-menu-mobile').click(function () {
+
+    setTimeout(()=>{
+          $('.menu-responsive').addClass('show-mn');
+        }
+        , 100)
+  })
+  $('.icon-close-res-menu img').click(function () {
+    $('.menu-responsive').removeClass('show-mn');
+  })
+
+  $(document).on("click", function(e) {
+    if ($(e.target) != $(".menu-responsive") && $(".menu-responsive").hasClass("show-mn")) {
+      $(".menu-responsive").removeClass("show-mn");
+    }
+  })
+
 }(jQuery));
