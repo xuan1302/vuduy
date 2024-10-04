@@ -29,25 +29,35 @@ $email_topbar = get_field('email_topbar', 'option');
 ?>
 
 <div id="page" class="site">
-<!--    <div class="menu-responsive">-->
-<!--        <div class="icon-close-res-menu">-->
-<!--            <img src="--><?php //bloginfo('template_url'); ?><!--/asset/icons/icon-slose-black.svg" alt="">-->
-<!--        </div>-->
-<!---->
-<!--        <div class="content-menu-mobile">-->
-<!--            <nav id="site-navigation-mobile" class="main-navigation-mobile">-->
-<!--                --><?php
-//                wp_nav_menu(
-//                    array(
-//                        'theme_location' => 'menu-mobile',
-//                        'menu_id'        => 'menu-mobile',
-//                    )
-//                );
-//                ?>
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <a class="skip-link screen-reader-text" href="#primary">--><?php //esc_html_e( 'Skip to content', 'anonymous' ); ?><!--</a>-->
+    <div class="menu-responsive">
+        <div class="icon-close-res-menu">
+            <img src="<?php bloginfo('template_url'); ?>/asset/icons/icon-close.svg" alt="">
+        </div>
+
+        <div class="content-menu-mobile">
+            <nav id="site-navigation-mobile" class="main-navigation-mobile">
+                <?php
+                wp_nav_menu(
+                    array(
+                        'theme_location' => 'main-menu-mobile',
+                        'menu_id'        => 'main-menu-mobile',
+                    )
+                );
+                ?>
+            </nav>
+            <div class="info-menu-mobile">
+                <a href="tel:<?php echo $hotline_topbar; ?>">
+                    <img class="icon icon-black" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-phone-1.svg" alt="">
+                    <?php echo $hotline_topbar; ?>
+                </a>
+                <a href="mailto:<?php echo $email_topbar; ?>">
+                    <img class="icon icon-black" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-mail-black.svg" alt="">
+                    <?php echo $email_topbar; ?>
+                </a>
+            </div>
+        </div>
+    </div>
+    <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'anonymous' ); ?></a>
     <div id="topbar">
         <div class="custom-container">
             <div class="content-topbar">
@@ -80,6 +90,9 @@ $email_topbar = get_field('email_topbar', 'option');
     <header id="masthead" class="site-header">
         <div class="header-top">
             <div id="head-main" class="container header-main">
+                <div class="icon-menu-mobile">
+                    <img src="<?php bloginfo('template_url'); ?>/asset/icons/icon-menu-bar.svg" alt="">
+                </div>
                 <div class="left-main item-main">
                     <h1 class="site-title">
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
@@ -102,7 +115,7 @@ $email_topbar = get_field('email_topbar', 'option');
                         <a class="cart-contents" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'Xem giỏ hàng', 'woocommerce' ); ?>">
                         <span class="card-icon">
                             <img class="icon" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-shop.svg" alt="">
-                            Giỏ hàng
+                            <span class="card-text">Giỏ hàng</span>
                         </span>
                             <span class="cart-count">
                                 (<?php echo WC()->cart->get_cart_contents_count(); // Số lượng sản phẩm trong giỏ hàng ?>)
@@ -110,17 +123,20 @@ $email_topbar = get_field('email_topbar', 'option');
                         </a>
                     </div>
                 </div>
-                <!--            <div class="icon-menu-mobile">-->
-                <!--                <img src="--><?php //bloginfo('template_url'); ?><!--/asset/icons/icon-menu-mobile.svg" alt="">-->
-                <!--                <img class="icon-menu-color" src="--><?php //bloginfo('template_url'); ?><!--/asset/icons/menu-icon.svg" alt="">-->
-                <!--            </div>-->
             </div>
         </div>
         <div class="header-bottom">
             <div class="container">
                 <div class="main-content-header-bottom">
+                    <div class="form-search-product form-search-product-mobile">
+                        <form role="search" method="get" class="woocommerce-product-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                            <input type="search" id="woocommerce-product-search-field" class="search-field" placeholder="Tìm kiếm sản phẩm" value="<?php echo get_search_query(); ?>" name="s" />
+                            <button id="btn-submit-woocommerce-product-search" type="submit" value="Tìm kiếm">
+                                <img class="icon" src="<?php bloginfo('template_url'); ?>/asset/icons/search.svg" alt="">
+                            </button>
+                        </form>
+                    </div>
                     <nav id="site-navigation-main" class="header-main-navigation">
-                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'anonymous' ); ?></button>
                         <?php
                         wp_nav_menu(
                             array(

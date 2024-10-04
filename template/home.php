@@ -87,7 +87,7 @@ $myposts_query_duan = get_posts( $args_duan );
         <div class="category-home">
             <div class="container">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <div class="ct-cat-home">
                             <h4><?php echo $cat_title; ?></h4>  
                             <div class="des"><?php echo $content_cat; ?></div>
@@ -98,7 +98,7 @@ $myposts_query_duan = get_posts( $args_duan );
                             </a>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-md-8">
                         <div class="list-cat-loop">
                             <?php
                                 foreach ($cats_product_home as $item) { ?>
@@ -112,6 +112,11 @@ $myposts_query_duan = get_posts( $args_duan );
                                 <?php }
                             ?>
                         </div>
+                        <a href="<?php echo $link_cat; ?>" class="link-cat hover-see-more read-more-mobile">
+                            Xem thêm
+                            <img class="icon icon-black" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-mt-right.svg" alt="">
+                            <img class="icon icon-white" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-right-w.svg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -152,14 +157,14 @@ $myposts_query_duan = get_posts( $args_duan );
             <div class="image-2" style="background-image: url(<?php echo $image_aboutus_2['url']; ?>)"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="left-about">
                             <h5 class="title"><?php echo $title_aboutus; ?></h5>
                             <div class="des"><?php echo $content_aboutus; ?></div>
                             <a href="<?php echo $link_aboutus; ?>" class="link-about">Về chúng tôi <img class="icon" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-mt-right.svg" alt=""></a>
                         </div>
                     </div>
-                    <div class="col-6"></div>
+                    <div class="col-md-6"></div>
                 </div>
             </div>
         </div>
