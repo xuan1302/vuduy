@@ -3,7 +3,7 @@
         max-width: 1326px;
     }
 }
-@media only screen and (max-width: 1599px) {
+/* @media only screen and (max-width: 1599px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 1296px;
     }
@@ -12,7 +12,7 @@
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 960px;
     }
-}
+} */
 @media only screen and (max-width: 1199px) {
     .list-product-abous{
         grid-template-columns: repeat(2, 1fr);
