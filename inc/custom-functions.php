@@ -15,13 +15,15 @@ function xxx_scripts() {
     wp_enqueue_style('swiper-css' , THEME_URL . 'asset/css/swiper.min.css');
     wp_enqueue_style('aos-css' , THEME_URL . 'asset/css/aos.css');
     wp_enqueue_style('style-css' , THEME_URL . 'asset/css/style.css');
-    wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/reponsive.css');
+    wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/responsive.css');
+    wp_enqueue_style('aboutus-css' , THEME_URL . 'asset/css/about-us.css');
+    wp_enqueue_style('product-css' , THEME_URL . 'asset/css/product.css');
 
     wp_enqueue_script( 'boostrap-js', get_template_directory_uri() . '/asset/js/bootstrap.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/asset/js/swiper-bundle.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'aos-js', get_template_directory_uri() . '/asset/js/aos.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/asset/js/custom.js', array( ), THEME_VERSION, true );
-        wp_enqueue_script( 'common-js', get_template_directory_uri() . '/asset/js/common.js', array( ), THEME_VERSION, true );
+    wp_enqueue_script( 'common-js', get_template_directory_uri() . '/asset/js/common.js', array( ), THEME_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'xxx_scripts',10 );
 
@@ -241,3 +243,94 @@ function handle_get_product_san_pham_ban_chay() {
     wp_die();
 }
 
+add_filter('woocommerce_product_tabs', 'custom_product_tabs_policy');
+function custom_product_tabs_policy($tabs) {
+    // Thêm tab mới
+    $tabs['custom_tab_policy'] = array(
+        'title'    => __('Chính Sách', 'text-domain'),
+        'priority' => 50,
+        'callback' => 'custom_product_tab_policy_content'
+    );
+
+    return $tabs;
+}
+
+function custom_product_tab_policy_content() {
+    echo get_field('tab_policy_content');
+}
+
+add_filter('woocommerce_product_tabs', 'custom_product_tabs_preserve');
+function custom_product_tabs_preserve($tabs) {
+    // Thêm tab mới
+    $tabs['custom_tab_preserve'] = array(
+        'title'    => __('Bảo quản', 'text-domain'),
+        'priority' => 60,
+        'callback' => 'custom_product_tab_preserve_content'
+    );
+
+    return $tabs;
+}
+function custom_product_tab_preserve_content() {
+    echo get_field('tab_preserve_content');
+}
+function allow_empty_price_add_to_cart($is_purchasable, $product) {
+    if ($product->get_price() === '') {
+        $is_purchasable = true;
+    }
+    return $is_purchasable;
+}
+add_filter('woocommerce_is_purchasable', 'allow_empty_price_add_to_cart', 10, 2);
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+if ( !function_exists( 'related_product' ) ) {
+    function  related_product() {
+        // Get the current product
+        global $product;
+
+        // Get the terms related to the current product
+        $product_cats = wp_get_post_terms($product->get_id(), 'product_cat');
+        if (!empty($product_cats) && !is_wp_error($product_cats)) {
+            $product_cat_ids = [];
+            foreach ($product_cats as $product_cat) {
+                $product_cat_ids[] = $product_cat->term_id;
+            }
+
+            // Set up the query arguments
+            $args = array(
+                'post_type'           => 'product',
+                'posts_per_page'      => 4, // Adjust the number of products displayed as needed
+                'post__not_in'        => array($product->get_id()), // Exclude the current product
+                'tax_query'           => array(
+                    array(
+                        'taxonomy' => 'product_cat',
+                        'field'    => 'term_id',
+                        'terms'    => $product_cat_ids,
+                        'operator' => 'IN',
+                    ),
+                ),
+            );
+
+            // Create a custom query
+            $related_products = new WP_Query($args);
+
+            // Check if products are found
+            if ($related_products->have_posts()) {
+                echo '<div class="related-products">';
+                echo '<h2>Sản phẩm cùng loại</h2>';
+                echo '<div class="products-grid">'; // Add a wrapper for the product items
+
+                while ($related_products->have_posts()) {
+                    $related_products->the_post();
+                    wc_get_template_part('content', 'product'); // Load the product template
+                }
+
+                echo '</div>'; // Close the products grid
+                echo '</div>'; // Close the related products section
+            }
+
+            // Restore original Post Data
+            wp_reset_postdata();
+        }
+    }
+}
