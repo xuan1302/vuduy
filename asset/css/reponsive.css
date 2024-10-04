@@ -214,7 +214,7 @@
         position: absolute;
         right: 0;
         z-index: 1;
-        bottom: -345px;
+        bottom: -330px;
         width: calc(100% - 30px);
         height: 100%;
         left: 30px;
@@ -260,16 +260,45 @@
         flex-direction: column;
         gap: 16px;
     }
+    .content-bt-slide .item .title, .product-custom .product-box h2{
+        font-size: 16px;
+    }
+    .about-us{
+        padding-top: 48px;
+    }
+    .product-aboutus .ct-top h5{
+        font-size: 24px;
+    }
+    .content-process .item-process .title{
+        font-size: 20px;
+    }
+    .left-service .title, .home-post-sk .ct h3, .left-footer-top .title{
+        font-size: 24px;
+    }
+    .list-service .item-ser .content-ser h5{
+        font-size: 16px;
+    }
+    .content-home-post-top .item .img h5.title{
+        font-size: 20px;
+        padding: 0 24px;
+        left: 0;
+    }
 }
 @media only screen and (max-width: 575px) {
     .img-slider-bg{
         min-height: 421px;
     }
     .about-us{
-        margin-bottom: 420px;
+        margin-bottom: 335px;
     }
     .about-us .image-2{
-        margin-bottom: -70px;
+        margin-bottom: 0;
+    }
+    .product-custom .product-box .des{
+        font-size: 14px;
+    }
+    .left-about .title{
+        font-size: 24px;
     }
 }
 @media only screen and (max-width: 560px) {
@@ -278,17 +307,26 @@
 
 @media only screen and (max-width: 500px) {
     .about-us .image-2 {
-        margin-bottom: -90px;
+        margin-bottom: -60px;
     }
     .container, .container-md, .container-sm {
         padding-left: 20px;
         padding-right: 20px;
     }
+    .about-us {
+        margin-bottom: 370px;
+    }
 }
 
 @media only screen and (max-width: 420px) {
     .about-us .image-2 {
-        margin-bottom: -110px;
+        display: none;
+    }
+    .about-us{
+        margin-bottom: 0;
+    }
+    .about-us .image-1{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 375px) {
