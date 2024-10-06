@@ -3,16 +3,16 @@
         max-width: 1326px;
     }
 }
-/* @media only screen and (max-width: 1599px) {
+@media only screen and (max-width: 1599px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1296px;
+        max-width: 1326px;
     }
 }
-@media only screen and (max-width: 1440px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 960px;
-    }
-} */
+/*@media only screen and (max-width: 1440px) {*/
+/*    .container, .container-lg, .container-md, .container-sm, .container-xl {*/
+/*        max-width: 960px;*/
+/*    }*/
+/*}*/
 @media only screen and (max-width: 1199px) {
     .list-product-abous{
         grid-template-columns: repeat(2, 1fr);
@@ -137,6 +137,28 @@
     .right-footer-top{
         flex-direction: column;
     }
+    .content-dich-vu-thi-cong-san-xuat .title-top{
+        flex-direction: column;
+        gap: 16px;
+    }
+    .content-dich-vu-thi-cong-san-xuat .title-top h3, .content-dich-vu-thi-cong-san-xuat .title-top .des{
+        width: 100%;
+    }
+    .list-cat-service{
+        padding-top: 48px;
+    }
+    .list-cat-service .link-all-cs{
+        display: none;
+    }
+    .list-cat-service .link-all-mobile{
+        display: block;
+        margin-bottom: 48px;
+        width: 100%;
+        text-align: center;
+    }
+    .list-cat-service .item-cat:last-child .list-product-ser{
+        padding: 32px 0 64px 0
+    }
 }
 @media only screen and (max-width: 767px) {
     .about-us-home .content{
@@ -259,6 +281,7 @@
     .copyright{
         flex-direction: column;
         gap: 16px;
+        align-items: start;
     }
     .content-bt-slide .item .title, .product-custom .product-box h2{
         font-size: 16px;
@@ -282,6 +305,9 @@
         font-size: 20px;
         padding: 0 24px;
         left: 0;
+    }
+    .content-dich-vu-thi-cong-san-xuat .title-top h3{
+        font-size: 24px;
     }
 }
 @media only screen and (max-width: 575px) {
@@ -315,6 +341,9 @@
     }
     .about-us {
         margin-bottom: 370px;
+    }
+    .content-dich-vu-thi-cong-san-xuat .banner{
+        min-height: 95px;
     }
 }
 

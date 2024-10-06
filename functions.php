@@ -177,6 +177,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 require get_template_directory() . '/inc/custom-functions.php';
+require get_template_directory() . '/inc/breadcrumb.php';
 
 //require get_template_directory() . '/inc/custom-postype.php';
 // define('WOOCOMMERCE_USE_CSS', false);

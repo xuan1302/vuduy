@@ -20,7 +20,7 @@ $address_footer_2 = get_field( "address_footer_2", 'option' );
 $hotline_footer = get_field( "hotline_footer", 'option' );
 $email_footer = get_field( "email_footer", 'option' );
 $web_footer = get_field( "web_footer", 'option' );
-$coppy_right = get_field( "web_footer", 'option' );
+$coppy_right = get_field( "coppy_right", 'option' );
 $iframe_facebook = get_field( "iframe_facebook", 'option' );
 
 ?>

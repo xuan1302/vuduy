@@ -18,7 +18,7 @@ $slide_image_about_us = get_field("slide_image_about_us");
             <div class="container branding-stories-title-contain">
                 <div class="row">
                     <div class="col-12 col-xl-4 branding-stories-title">
-                        <h1 class="main-title"><?php echo $brand_story_title ?></h2>
+                        <h2 class="main-title"><?php echo $brand_story_title ?></h2>
                     </div>
                     <div class="col-12 col-xl-8 branding-stories-description">
                         <p><?php echo $brand_story_description ?></p>
