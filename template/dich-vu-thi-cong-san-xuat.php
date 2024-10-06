@@ -71,21 +71,12 @@ $product_cat_list = get_field( "product_cat_list" );
                                                                      }
                                                                      echo '</div>';
                                                                  }
-                                                                 echo woocommerce_get_product_thumbnail(); // Hình ảnh sản phẩm
+                                                                 echo woocommerce_get_product_thumbnail();
                                                                  ?>
                                                          </div>
                                                             <div class="product-box">
-                                                             <h2><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
-                                                             <div class="price">
-                                                             <?php
-                                                             if ( !empty( $sale_price ) ) {
-                                                                 echo '<div class="price-goc">' . wc_price( $regular_price ). '</div>';
-                                                                 echo '<div class="price-sale">' . wc_price( $sale_price ). '</div>';
-                                                             } else {
-                                                                 echo '<div class="price-goc">' . wc_price( $regular_price ). '</div>';
-                                                             }
-                                                             ?>
-                                                             </div>
+                                                                <h2><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title() ?></a></h2>
+                                                                <div class="des"><?php echo wp_trim_words( get_the_excerpt(), 12, '...' ) ?></div>
                                                              </div>
                                                          </div>
                                                         <?php
