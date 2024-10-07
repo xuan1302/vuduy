@@ -1,3 +1,108 @@
+:root {
+    --font-primary: "Montserrat", sans-serif;
+    --font-secondary: "Open Sans", sans-serif;
+}
 .single-product .entry-header {
     display: none;
+}
+.custom-product-wrapper .custom-product-title{
+    font-family: var(--font-primary);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    text-align: left;
+    color: #343434;
+    margin-bottom: 16px;
+}
+.custom-product-wrapper .contact-price{
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: left;
+    color: #004A06;
+    margin-bottom: 28px;
+
+}
+.custom-product-wrapper .product-excerpt p{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+    color: #353535;
+    margin-bottom: 28px;
+}
+.custom-product-wrapper form.cart{
+    margin-bottom: 16px !important;
+}
+.custom-product-wrapper .custom-contact-btn a{
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    color: #121212;
+    width: 100%;
+    padding: 15px;
+    border: 1.5px solid #121212;
+    display: block;
+    text-transform: uppercase;
+    border-radius: 24px;
+}
+.custom-product-wrapper .single_add_to_cart_button{
+    width: 100%;
+    font-family: var(--font-primary);
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 16px !important;
+    background-color: #004A06 !important;
+    text-align: center;
+    border-radius: 24px !important;
+    text-transform: uppercase;
+    padding: 12px !important;
+}
+.custom-product-wrapper  .product-sku{
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+    color: #353535;
+    margin-bottom: 16px;
+}
+.custom-product-wrapper  .product-sku span{
+    font-weight: 600;
+    line-height: 24px;
+}
+.custom-product-wrapper  .custom-quantity-wrapper{
+    display: flex;
+    align-items: center;
+}
+.custom-product-wrapper .quantity .custom-quantity-input{
+    text-align: center;
+    border: none;
+    width: 52px;
+    color: #343434;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+
+}
+.custom-product-wrapper .custom-product-price span{
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: left;
+    color: #004A06;
+    margin-bottom: 28px;
+}
+.custom-quantity-wrapper .quantity-minus, .custom-quantity-wrapper .quantity-plus{
+    border: 2px solid #353535;
+    border-radius: 100%;
+    background: #FFF;
+}
+.custom-product-wrapper  .custom-quantity-wrapper{
+    margin-bottom: 28px;
 }

@@ -48,7 +48,7 @@ if ( post_password_required() ) {
 			<div class="summary entry-summary">
 				<?php echo '<h1 class="custom-product-title entry-title">' . $product->get_name() . '</h1>';?>
 				<?php if ( $product->get_sku() ) {
-        			echo '<p class="product-sku">Mã sản phẩm: ' . $product->get_sku() . '</p>';
+        			echo '<p class="product-sku">Mã sản phẩm: <span>' . $product->get_sku() . '</span></p>';
     			}?>
 				<?php
 				 	if ($product->get_price() === '') {
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 				<?php
 					$excerpt = $product->get_short_description();
 					if ( !empty( $excerpt ) ) {
-						echo '<div class="product-excerpt">' . $excerpt . '</div>';
+						echo '<div class="product-excerpt"> <p>' . $excerpt . '</p> </div>';
 					}
 
 				?>
