@@ -285,6 +285,7 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 
+
 if ( !function_exists( 'related_product' ) ) {
     function  related_product() {
         // Get the current product
