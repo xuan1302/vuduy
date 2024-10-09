@@ -149,9 +149,14 @@ $email_topbar = get_field('email_topbar', 'option');
                 </div>
             </div>
         </div>
-        <div class="custom-breadcrumb">
-            <div class="container">
-                <?php SSls_breadcrumbs(); ?>
+        <?php
+        if ( !is_home() && !is_front_page() || is_paged() ) { ?>
+            <div class="custom-breadcrumb">
+                <div class="container">
+                    <?php SSls_breadcrumbs(); ?>
+                </div>
             </div>
-        </div>
+        <?php }
+        ?>
+
     </header>
