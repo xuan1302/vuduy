@@ -15,18 +15,29 @@
 	</header><!-- .entry-header -->
 
 	<?php anonymous_post_thumbnail(); ?>
-
+	
 	<div class="entry-content">
-		<?php
-		the_content();
+		<div class="archive-wapper row">
+			<div class="col-xl-3 col-12">
+				<?php 
+					if ( is_product_category() ) {
+						get_sidebar('shop'); 
+					}
+				?>
+			</div>
+			<div class="col-xl-9 col-12">
+				<?php
+				the_content();
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'anonymous' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'anonymous' ),
+						'after'  => '</div>',
+					)
+				);
+				?>
+			</div>
+		</div>
 	</div><!-- .entry-content -->
 
 	<?php if ( get_edit_post_link() ) : ?>
