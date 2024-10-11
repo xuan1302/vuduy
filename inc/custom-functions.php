@@ -286,6 +286,8 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
 if ( !function_exists( 'related_product' ) ) {
     function  related_product() {
@@ -338,19 +340,6 @@ if ( !function_exists( 'related_product' ) ) {
         }
     }
 }
-
-function custom_woocommerce_sidebar() {
-    register_sidebar( array(
-        'name'          => __( 'WooCommerce Sidebar', 'your-theme-text-domain' ),
-        'id'            => 'woocommerce_sidebar_product',
-        'description'   => __( 'Custom WooCommerce Sidebar for product and category pages.', 'your-theme-text-domain' ),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widget-title">',
-        'after_title'   => '</h4>',
-    ) );
-}
-add_action( 'widgets_init', 'custom_woocommerce_sidebar' );
 
 add_filter( 'woocommerce_product_categories_widget_dropdown_args', 'wpsites_product_cat_widget' );
 

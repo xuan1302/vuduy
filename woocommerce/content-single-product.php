@@ -54,10 +54,21 @@ if ( post_password_required() ) {
 				 	if ($product->get_price() === '') {
 						echo '<p class="contact-price">Giá liên hệ</p>';
 					}
-					else{
-						echo '<div class="custom-product-price">';
-						echo $product->get_price_html(); // This displays the product price in the HTML format (includes sale price)
-						echo '</div>';
+					else{?>
+						<div class="custom-product-price">
+							<?php
+							if ( $product->is_on_sale() ) {
+								// Display the sale price (promotional price) first
+								echo '<span class="sale-price">' . wc_price( $product->get_sale_price() ) . '</span>';
+						
+								// Display the regular price (strikethrough for visual indication of discount)
+								echo ' <span class="regular-price-del" style="text-decoration: line-through;">' . wc_price( $product->get_regular_price() ) . '</span>';
+							} else {
+								// If not on sale, just display the regular price
+								echo ' <span class="regular-price">' . wc_price( $product->get_regular_price() ) . '</span>';
+							}?>
+						</div>
+						<?php
 					}
 				?>
 				<?php
