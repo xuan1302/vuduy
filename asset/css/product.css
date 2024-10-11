@@ -298,6 +298,7 @@
     text-align: left;
     color: #909090;
     margin-bottom: 10px;
+    position: relative;
 }
 .archive-wrapper .product-category__title h1::before{
     content: url("../icons/Icons-category.svg");
@@ -321,3 +322,20 @@
     color: #004A06;
 }
 
+@media (max-width: 768px) {
+    .archive-wrapper .product-categories{
+        overflow: hidden;
+        height: 0;
+        transition: height 0.3s ease;
+    }
+    .archive-wrapper .product-category__title h1::after{
+        content: url("../icons/icon-arrowdown.svg");
+        display: inline-block;
+        vertical-align: middle;
+        position: absolute;
+        right: 0;
+    }
+    .archive-wrapper .product-category__title.is-open h1::after{
+        transform: rotate(180deg);
+    }
+}

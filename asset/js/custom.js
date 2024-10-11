@@ -78,6 +78,15 @@ $('.quantity-plus').click(function() {
     }
 });
 
+$('.archive-wrapper .product-category__title').on("click", function() {
+  $(this).toggleClass("is-open");
+  const description = $(this).parent().find(".product-categories");
+  if ($(this).hasClass("is-open")) {
+      description.css("height", description[0].scrollHeight + "px");
+  } else {
+      description.css("height", "0px");
+  }
+});
   // Ensure the first tab and its content are active initially
   // $('.wc-tabs li:first-child, .woocommerce-tabs ul.tabs li:first-child').addClass('active');
   // $('.woocommerce-Tabs-panel:first-child').show();

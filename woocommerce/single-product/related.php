@@ -27,17 +27,16 @@ if ( $related_products ) :
 		<div class="related_title_contain d-flex justify-content-between">
 			<h2><?php echo esc_html( $heading ); ?></h2>
 			<?php
+			
 			if ( ! empty( $product_cats ) && ! is_wp_error( $product_cats ) ) {
-				foreach ( $product_cats as $cat_id ) {
-					// Get the category link
-					$category_link = get_term_link( $cat_id, 'product_cat' );
-					if ( ! is_wp_error( $category_link ) ) {?>
-						<a href="<?php echo $category_link; ?>">Xem toàn bộ <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</a>
-					<?php }
-				}
+				// Get the category link
+				$category_link = get_term_link( $product_cats[0], 'product_cat' );
+				if ( ! is_wp_error( $category_link ) ) {?>
+					<a href="<?php echo $category_link; ?>">Xem toàn bộ <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</a>
+				<?php }
 			}
 			?>
 		</div>
