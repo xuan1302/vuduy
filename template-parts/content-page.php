@@ -53,7 +53,7 @@
 					<div class="col-xl-9 col-12">
 						<?php
 						the_content();
-
+						
 						wp_link_pages(
 							array(
 								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'anonymous' ),

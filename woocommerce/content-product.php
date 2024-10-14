@@ -32,6 +32,18 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_product_link_open - 10
 	 */
 	do_action( 'woocommerce_before_shop_loop_item' );
+	// Get the product post date
+	$post_date = get_the_date( 'Y-m-d', $product->get_id() );
+	$current_date = date( 'Y-m-d' );
+	$date_diff = ( strtotime( $current_date ) - strtotime( $post_date ) ) / ( 60 * 60 * 24 ); // Difference in days
+
+	// Display "New" label if the product is less than 30 days old
+	if ( $date_diff <= 30 ) {
+		echo '<span class="new-tag">New</span>';
+	}
+	if($product->is_on_sale()) {
+		echo '<span class="product-sale">Sale</span>';
+	}
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item_title.
