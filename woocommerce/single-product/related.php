@@ -53,7 +53,7 @@ if ( $related_products ) :
 	if ( $related_by_category ) :
 		woocommerce_product_loop_start();
 		?>
-		<div class="row">
+		<div class="custom-related-product-grid">
 			<?php foreach ( $related_by_category as $related_product ) : ?>
 
 				<?php
@@ -61,7 +61,7 @@ if ( $related_products ) :
 
 				setup_postdata( $GLOBALS['post'] =& $post_object );
 				?>
-				<div class="custom-related-product-item col-12 col-xl-3">
+				<div class="custom-related-product-item">
 					<div class="custom-product-image">
 						<a href="<?php echo esc_url( get_permalink( $related_product->get_id() ) );?>">
 							<?php echo $related_product->get_image(); ?>
