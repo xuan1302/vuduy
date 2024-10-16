@@ -374,15 +374,56 @@ if ( !function_exists( 'custom_pagination' ) ) {
             } else {
                 $format = '&paged=%#%';
             }
-            echo paginate_links(array(
+            
+            // Generate pagination links as an array
+            $pagination_links = paginate_links(array(
                 'base'			=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
                 'format'		=> $format,
                 'current'		=> max( 1, get_query_var('paged') ),
                 'total' 		=> $total,
                 'mid_size'		=> 3,
-                'type' 			=> 'list',
-                'prev_next' => false
-            ) );
+                'type' 			=> 'array', // Get the links as an array
+                'prev_text'  => __('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg> Trước'),
+                'next_text'  => __('Sau <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>'),
+            ));
+
+            // Check if pagination links are available
+            if ( is_array( $pagination_links ) ) {
+                echo '<ul class="pagination">';
+
+                // Display the prev link - always show it, but disable if on the first page
+                if ( $current_page > 1 ) {
+                    // If not on the first page, show active prev link
+                    echo "<li class='prev-page'><a href='" . get_pagenum_link( $current_page - 1 ) . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg> Trước</a></li>";
+                } else {
+                    // On the first page, show disabled prev link
+                    echo "<li class='prev-page disabled'><span><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg> Trước</span></li>";
+                }
+
+                // Group the page numbers in a separate div
+                echo '<li><div class="page-number-group">';
+                foreach ( $pagination_links as $link ) {
+                    if ( strpos( $link, 'prev' ) === false && strpos( $link, 'next' ) === false ) {
+                        echo "$link";
+                    }
+                }
+                echo '</div></li>';
+
+                // Display the next link - always show it, but disable if on the last page
+                if ( $current_page < $total ) {
+                    // If not on the last page, show active next link
+                    echo "<li class='next-page'><a href='" . get_pagenum_link( $current_page + 1 ) . "'>Sau <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg></a></li>";
+                } else {
+                    // On the last page, show disabled next link
+                    echo "<li class='next-page disabled'><span>Sau <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg></span></li>";
+                }
+
+                echo '</ul>';
+            }
         }
     }
 }

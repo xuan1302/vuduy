@@ -7,7 +7,15 @@ get_header();
         <header class="page-header">
             <?php
             // Display category title
-            single_cat_title('<h1 class="archive-title">', '</h1>');
+            echo '<h1 class="category-title">';
+            single_cat_title();
+            echo '</h1>';
+
+            // Display category description if available
+            $category_description = category_description();
+            if ( ! empty( $category_description ) ) {
+                echo '<div class="category-description">' . $category_description . '</div>';
+            }
             ?>
         </header>
         
@@ -41,9 +49,11 @@ get_header();
                                             <div class="entry-tag">
                                                 <?php
                                                 if ( $post_tags ) {
+                                                    $tag_names = array();
                                                     foreach( $post_tags as $tag ) {
-                                                        echo '<li>' . esc_html( $tag->name ) . '</li>';
+                                                        $tag_names[] = esc_html( $tag->name );
                                                     }
+                                                    echo implode( ', ', $tag_names );
                                                 }
                                                 ?>
                                             </div>
@@ -69,10 +79,8 @@ get_header();
                     ?>
                 </div><!-- .project-grid -->
 
-                <div class="col-12">
-                    <div class="pagination-custom">
-                       <?php echo custom_pagination(); ?>
-                    </div>
+                <div class="custom-pagination">
+                    <?php echo custom_pagination(); ?>
                 </div>
             </div><!-- .content -->
 
