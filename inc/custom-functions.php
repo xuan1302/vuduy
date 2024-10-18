@@ -18,6 +18,7 @@ function xxx_scripts() {
     wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/responsive.css');
     wp_enqueue_style('aboutus-css' , THEME_URL . 'asset/css/about-us.css');
     wp_enqueue_style('product-css' , THEME_URL . 'asset/css/product.css');
+    wp_enqueue_style('post-css' , THEME_URL . 'asset/css/post.css');
 
     wp_enqueue_script( 'boostrap-js', get_template_directory_uri() . '/asset/js/bootstrap.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/asset/js/swiper-bundle.min.js', array( ), THEME_VERSION, true );
@@ -425,5 +426,98 @@ if ( !function_exists( 'custom_pagination' ) ) {
                 echo '</ul>';
             }
         }
+    }
+}
+
+if ( !function_exists( 'related_posts' ) ){
+    function  related_posts() {
+        $posttype = get_post_type();
+        if ( $posttype == 'post' ) {
+            $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+            $args = array(
+                'cat'                 => $categories,
+                'post__not_in'        => array(get_the_id()),
+                'showposts'           => 3,
+                'ignore_sticky_posts' => 1,
+                'orderby'             => 'rand',
+            );
+        }
+        $related_post = new wp_query($args);
+        if( $related_post->have_posts() ){
+            ?>
+            <div class="show-related container-fluid">
+                <div class="related-title-block">
+                    <div class="related-title">
+                        <?php
+                        the_category(', ');
+                        ?>
+                    </div>
+                    <?php $posttype = get_post_type();
+                    if ( $posttype == 'post' ) {
+                        global $post;
+                        $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+                        $category_link = get_category_link( $categories[0] );
+                        ?>
+                        <div class="show-all">
+                            <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#002D4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+                            </a>
+                        </div>
+
+                    <?php } ?>
+                </div>
+                <div class="related-post-content">
+                    <?php while ($related_post->have_posts()){
+                        $related_post->the_post();
+                        $url_thumbnail = get_the_post_thumbnail_url();
+                        global $post;
+                        ?>
+                        <article class="item" id="post-<?php esc_attr(the_ID()); ?>" <?php post_class(); ?>>
+                                <div class="entry-image">
+                                    <?php if ($url_thumbnail) : ?>
+                                        <div class="post-thumbnail">
+                                            <a href="<?php the_permalink() ?>" class="cct-image-wrapper">
+                                                <img src="<?php echo $url_thumbnail ?>" alt="<?php the_title(); ?>"/>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="inner">
+                                        <div class="entry-title">
+                                            <h1><?php echo the_title(); ?></h1>
+                                        </div>
+                                        <div class="entry-summary">
+								            <?php the_excerpt(); ?>
+							            </div>
+                                        <div class="readmore-block">
+                                            <a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" class="entry-readmore">
+                                                <?php echo esc_html__('đọc thêm', 'cct'); ?>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </article>
+                    <?php } ?>
+                </div>
+                <?php $posttype = get_post_type();
+                if ( $posttype == 'post' ) {
+                    global $post;
+                    $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+                    $category_link = get_category_link( $categories[0] );
+                    ?>
+                    <div class="show-all show-all-mobile">
+                        <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.77 6C5.77 5.58579 6.10579 5.25 6.52 5.25H19C19.4142 5.25 19.75 5.58579 19.75 6V18.48C19.75 18.8942 19.4142 19.23 19 19.23C18.5858 19.23 18.25 18.8942 18.25 18.48V7.81066L6.53033 19.5303C6.23744 19.8232 5.76256 19.8232 5.46967 19.5303C5.17678 19.2374 5.17678 18.7626 5.46967 18.4697L17.1893 6.75H6.52C6.10579 6.75 5.77 6.41421 5.77 6Z" fill="#324894"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                <?php } ?>
+            </div>
+
+        <?php   }
+        wp_reset_query();
     }
 }
