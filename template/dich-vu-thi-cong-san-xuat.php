@@ -1,5 +1,5 @@
 <?php
-//Template Name: Dich vu thi cong san xuat
+//Template Name: Custom list product cat
 get_header();
 $banner = get_field( "banner" );
 $title = get_field( "title" );

@@ -334,3 +334,56 @@ if ( !function_exists( 'related_product' ) ) {
         }
     }
 }
+
+// update product card
+add_action( 'wp_ajax_action_remove_product_from_mini_card', 'handle_remove_product_from_mini_card' );
+add_action( 'wp_ajax_nopriv_action_remove_product_from_mini_card', 'handle_remove_product_from_mini_card' );
+
+function handle_remove_product_from_mini_card() {
+    $product_id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
+
+    if ($product_id) {
+        // Kiểm tra xem giỏ hàng có tồn tại không
+        if (WC()->cart->get_cart() && isset(WC()->cart->cart_contents[$product_id])) {
+            // Xóa sản phẩm khỏi giỏ hàng
+            WC()->cart->remove_cart_item($product_id);
+            wp_send_json_success(array('cart_count' => WC()->cart->get_cart_contents_count()));
+//            return true;
+        }
+        return false; // Trả về false nếu không thành công
+    }
+
+    wp_die();
+}
+
+// update count product card
+add_action( 'wp_ajax_action_update_total_product_by_id', 'handle_update_total_product_by_id' );
+add_action( 'wp_ajax_nopriv_action_update_total_product_by_id', 'handle_update_total_product_by_id' );
+
+function handle_update_total_product_by_id() {
+    $product_id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
+    $product_count = isset($_POST['count']) ? sanitize_text_field($_POST['count']) : '';
+    $product_price = isset($_POST['price']) ? sanitize_text_field($_POST['price']) : '';
+
+    if ($product_id && $product_count) {
+        WC()->cart->set_quantity($product_id, $product_count);
+        $total = wc_price((int) ($product_price * $product_count));
+
+        wp_send_json_success(
+            array(
+                'total' => $total,
+                'cart_count' => WC()->cart->get_cart_contents_count()
+            )
+        );
+    }
+
+    wp_die();
+}
+
+function enqueue_custom_script_for_specific_template() {
+    // Kiểm tra nếu trang hiện tại sử dụng template cụ thể
+    if (is_page_template('template/checkout.php')) { // Thay 'template-custom.php' bằng tên template của bạn
+        wp_enqueue_script( 'checkout-js', get_template_directory_uri() . '/asset/js/checkout.js', array( ), THEME_VERSION, true );
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_script_for_specific_template');
