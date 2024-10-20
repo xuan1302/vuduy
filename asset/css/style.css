@@ -1202,3 +1202,457 @@ ul {
 .list-cat-service .link-all-mobile{
     display: none;
 }
+.form-info-lh .item{
+    margin-bottom: 16px;
+}
+.form-info-lh p{
+    margin: 0;
+    font-size: 14px;
+}
+.form-info-lh .item-lable label{
+    font-weight: 600;
+    line-height: 26px;
+    font-size: 16px;
+}
+.form-info-lh .item-value select{
+    appearance: none; /* Loại bỏ style mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 8px;
+    background-image: url('../icons/icon-arrow-bt.svg');
+    background-position: right 25px center;
+    background-repeat: no-repeat;
+    background-size: 12px;
+}
+.form-info-lh .item-value input{
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 8px;
+}
+.form-info-lh .item-value input:focus-visible,
+.form-info-lh .item-value select:focus-visible,
+.form-info-lh .item-value textarea:focus-visible{
+    outline: none;
+    border: 1px solid #004A06;
+}
+.form-info-lh .item-value textarea{
+    padding: 14px 20px;
+    height: 124px;
+}
+.form-info-lh .item-call .item-value .wpcf7-list-item.first{
+    margin-left: 0;
+}
+/*.form-info-lh .item-call .item-value .wpcf7-list-item.first label{*/
+/*    display: flex;*/
+/*    gap: 18px;*/
+/*}*/
+.form-info-lh .item-call .item-value .wpcf7-list-item{
+    margin-left: 32px;
+}
+.form-info-lh .item-call .item-value .wpcf7-list-item label{
+    display: flex;
+    gap: 12px;
+}
+.form-info-lh .item-call .item-value .wpcf7-list-item label input{
+    width: auto;
+}
+
+.form-info-lh .item-dk .item-value{
+    background-color: #F5F5F5;
+    padding: 20px 16px;
+}
+.form-info-lh .item-dk .item-value ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.form-info-lh .item-dk .item-value ul li{
+    padding-left: 20px;
+    position: relative;
+    color: #353535;
+    margin-bottom: 10px;
+}
+.form-info-lh .item-dk .item-value ul li:after{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #353535;
+    border-radius: 50%;
+    left: 0;
+    top: 10px;
+}
+.form-info-lh .item-read{
+    margin-bottom: 20px;
+}
+.form-info-lh .item-read .wpcf7-list-item{
+    margin-left: 0;
+    margin-right: 8px;
+}
+.form-info-lh .item-submit .item-lable{
+    margin-bottom: 20px;
+}
+.form-info-lh .item-submit p{
+    text-align: center;
+}
+.form-info-lh .item-submit .btn-submit{
+    width: 100%;
+    background-color: #000;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 16px;
+    font-weight: 600;
+    border-radius: 24px;
+}
+.form-info-lh .item-submit .btn-submit:hover{
+    background-color: #004A06;
+}
+.content-contact-us{
+    display: flex;
+    gap: 24px;
+    padding-top: 64px;
+}
+.content-contact-us .content-left, .content-contact-us .content-right{
+    width: 100%;
+}
+.template-contact-us{
+    background-color: #F4F4F4;
+    padding: 48px 0 64px 0;
+}
+.template-contact-us h2{
+    color: #121212;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0;
+}
+.custom-breadcrumb{
+    border-bottom: 1px solid #DCDCDC;
+}
+.top-lh{
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+}
+.top-lh .left-lh, .top-lh .right-lh{
+    width: 100%;
+}
+.top-lh .left-lh .item{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.top-lh .left-lh .item:last-child{
+    margin-bottom: 0;
+}
+.top-lh .right-lh .item{
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.top-lh .right-lh .item:last-child{
+    margin-bottom: 0;
+}
+.content-contact-us .content-right iframe{
+    height: 100%;
+    width: 100%;
+}
+.bottom-lh{
+    margin-top: 24px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 32px;
+}
+.bottom-lh .title-f{
+    color: #121212;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.bottom-lh .des{
+    margin-bottom: 24px;
+    color: #353535;
+}
+.page-template-checkout .custom-breadcrumb, .page-template-checkout .footer-top{
+    display: none;
+}
+.content-checkout-custom{
+    display: flex;
+    gap: 24px;
+    padding-bottom: 48px;
+}
+.content-checkout-custom .content-left, .content-checkout-custom .content-right{
+    width: 100%;
+}
+.template-checkout{
+    background-color: #DCDCDC;
+}
+.process-checkout{
+    border-bottom: 1px solid #c9c9c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+    gap: 64px;
+}
+.title-process-checkout{
+    margin: 0;
+    text-align: center;
+    font-size: 32px;
+    color: #121212;
+    font-family: "Montserrat", sans-serif;
+    padding: 48px 0 32px 0;
+}
+.process-checkout .item-process{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.process-checkout .item-process .process-number{
+    width: 32px;
+    height: 32px;
+    background-color: #909090;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 32px;
+}
+.process-checkout .item-process.active .process-number{
+    background-color: #004A06;
+}
+.process-checkout .item-process.active .title{
+    color: #004A06;
+}
+.process-checkout .item-process .title{
+    font-weight: 600;
+}
+.content-checkout-custom .content-right{
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+}
+.back-checkout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #121212;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+.back-checkout:hover{
+    color: #121212;
+}
+.content-checkout-custom .content-left{
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.content-checkout-custom .content-left .notifi{
+    /*margin-top: 32px;*/
+    padding: 20px;
+    background-color: #F4F2ED;
+    border-radius: 4px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.content-checkout-custom .content-left .notifi .text{
+    color: #004A06;
+    font-weight: 600;
+}
+.content-checkout-custom .content-left .caution{
+    margin-top: 32px;
+}
+.content-checkout-custom .content-left .caution h4{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #121212;
+}
+.content-checkout-custom .content-left .caution ul{
+    margin-top: 16px;
+    padding-left: 25px;
+}
+.content-checkout-custom .content-left .caution ul li{
+    position: relative;
+    margin-bottom: 16px;
+}
+.content-checkout-custom .content-left .caution ul li:last-child{
+    margin-bottom: 0;
+}
+.content-checkout-custom .content-left .caution ul li:after{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: 10px;
+    left: -15px;
+    border-radius: 50%;
+    background-color: #333;
+}
+.content-confirm{
+    background-color: #fff;
+    text-align: center;
+    padding: 64px 0;
+}
+.content-confirm .icon{
+    margin-bottom: 40px;
+}
+.content-confirm h4{
+    color: #121212;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.content-confirm h5{
+    font-weight: 400;
+    margin: 0;
+}
+.content-confirm  .action-btn{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+}
+.content-confirm  .action-btn a{
+    display: inline-block;
+    border: 1px solid #121212;
+    padding: 12px 24px;
+    border-radius: 24px;
+    color: #121212;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+}
+.content-confirm  .action-btn .link-home{
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.title-pr-checkout{
+    color: #121212;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+.list-product-checkout .item{
+    border-bottom: 1px solid #ddd;
+    padding-left: 34px;
+    display: flex;
+    gap: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.list-product-checkout .item .images{
+    width: 96px;
+    height: 96px;
+    position: relative;
+}
+.list-product-checkout .item .right-content{
+    width: 100%;
+}
+.list-product-checkout .item .right-content h3.title{
+    font-weight: 600;
+    font-size: 16px;
+    color: #121212;
+    margin-bottom: 12px;
+}
+.list-product-checkout .item .right-content .price,
+.list-product-checkout .item .right-content .count,
+.list-product-checkout .item .right-content .provisional
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.list-product-checkout .item .right-content .provisional{
+    margin-bottom: 0;
+}
+.list-product-checkout .item:first-child{
+    padding-top: 0;
+}
+.list-product-checkout .item:last-child{
+    border-bottom: none;
+}
+.list-product-checkout .item .right-content .value{
+    font-weight: 600;
+}
+.list-product-checkout .icon-remove{
+    cursor: pointer;
+    position: absolute;
+    left: -30px;
+    top: -5px;
+}
+.input-group{
+    display: flex;
+    width: fit-content;
+}
+.input-group button{
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+.input-group input{
+    border: none;
+    text-align: center;
+    background-color: #fff;
+}
+.input-group input:focus-visible{
+    outline: none;
+}
+#success-message{
+    position: fixed;
+    right: 15px;
+    top: 100px;
+    background-color: green;
+    color: #fff;
+    z-index: 9;
+    padding: 25px;
+    border-radius: 4px;
+}
+#error-message{
+    position: fixed;
+    right: 15px;
+    top: 100px;
+    background-color: darkred;
+    color: #fff;
+    z-index: 9;
+    padding: 25px;
+    border-radius: 4px;
+}
+.numberInput{
+    width: 50px;
+}
+.error404 .custom-breadcrumb, .search-results .custom-breadcrumb{
+    display: none;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+.template-search{
+    padding-top: 64px;
+}
+.template-search .page-title{
+    margin-bottom: 25px;
+    font-size: 28px;
+}

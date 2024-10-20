@@ -17,7 +17,9 @@
     .list-product-abous{
         grid-template-columns: repeat(2, 1fr);
     }
-
+    .content-contact-us{
+        flex-direction: column;
+    }
 }
 @media only screen and (max-width: 1024px) {
 
@@ -42,6 +44,9 @@
     }
     .left-topbar{
         margin-right: 25px;
+    }
+    .content-contact-us .content-right iframe{
+        height: 350px;
     }
 }
 @media only screen and (max-width: 991px) {
@@ -77,6 +82,9 @@
     }
     .icon-menu-mobile{
         display: block;
+    }
+    .content-checkout-custom{
+        flex-direction: column;
     }
 }
 @media only screen and (max-width: 800px) {
@@ -158,6 +166,13 @@
     }
     .list-cat-service .item-cat:last-child .list-product-ser{
         padding: 32px 0 64px 0
+    }
+    .title-process-checkout{
+        font-size: 24px;
+        padding: 24px 0 16px 0;
+    }
+    .template-search .page-title{
+        font-size: 24px;
     }
 }
 @media only screen and (max-width: 767px) {
@@ -309,6 +324,30 @@
     .content-dich-vu-thi-cong-san-xuat .title-top h3{
         font-size: 24px;
     }
+    .content-contact-us .content-right iframe{
+        height: 640px;
+    }
+    .template-contact-us{
+        padding-top: 24px;
+    }
+    .template-contact-us h2{
+        font-size: 24px;
+    }
+    .content-contact-us{
+        padding-top: 24px;
+    }
+    .bottom-lh, .form-info-lh .item-submit .item-lable{
+        padding-bottom: 0;
+    }
+    .process-checkout{
+        padding-left: 20px;
+    }
+    .process-checkout .item-process .title{
+        display: none;
+    }
+    .process-checkout .item-process.active .title{
+        display: inline-block;
+    }
 }
 @media only screen and (max-width: 575px) {
     .img-slider-bg{
@@ -325,6 +364,26 @@
     }
     .left-about .title{
         font-size: 24px;
+    }
+    .form-info-lh .col-3, .form-info-lh .col-9, .form-info-lh .col-6 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .top-lh{
+        flex-direction: column;
+    }
+    .content-confirm{
+        padding: 64px 20px;
+    }
+    .content-confirm h4{
+        font-size: 24px;
+    }
+    .content-confirm .action-btn{
+        flex-direction: column;
+    }
+    .content-confirm .action-btn a{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 560px) {
