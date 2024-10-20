@@ -112,13 +112,12 @@ $email_topbar = get_field('email_topbar', 'option');
                 </div>
                 <div class="right-main item-main">
                     <div class="header-cart">
-                        <a class="cart-contents" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'Xem giỏ hàng', 'woocommerce' ); ?>">
+                        <a class="cart-contents" href="<?php echo home_url('/checkout'); ?>" title="<?php _e( 'Xem giỏ hàng', 'woocommerce' ); ?>">
                         <span class="card-icon">
                             <img class="icon" src="<?php bloginfo('template_url'); ?>/asset/icons/icon-shop.svg" alt="">
                             <span class="card-text">Giỏ hàng</span>
                         </span>
-                            <span class="cart-count">
-                                (<?php echo WC()->cart->get_cart_contents_count(); // Số lượng sản phẩm trong giỏ hàng ?>)
+                            <span class="cart-count">(<span id="cart-count"><?php echo WC()->cart->get_cart_contents_count(); // Số lượng sản phẩm trong giỏ hàng ?></span>)
                         </span>
                         </a>
                     </div>

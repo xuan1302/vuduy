@@ -1,5 +1,10 @@
 (function ($) {
   AOS.init();
+
+  $('.back-checkout').click(function(e) {
+    e.preventDefault();
+    window.history.back();
+  });
   
   //slide
   var slide_image_about_us = new Swiper(".slide-image-about-us", {
