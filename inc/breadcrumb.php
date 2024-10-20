@@ -10,7 +10,7 @@ function SSls_breadcrumbs() {
         echo '<div class="breadcrums"><div xmlns:v="http://rdf.data-vocabulary.org/#"  id="crumbs">';
         global $post;
         $homeLink = home_url();
-        echo '<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" class="crumbs-home" href="' . $homeLink . '">' . __( 'Home', 'ssls' ) . '</a></span> ' . $delimiter . ' ';
+        echo '<span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" class="crumbs-home" href="' . $homeLink . '">' . __( 'Trang chủ', 'ssls' ) . '</a></span> ' . $delimiter . ' ';
 
         if ( is_category() || is_tag() ) {
 

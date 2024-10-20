@@ -48,22 +48,33 @@ if ( post_password_required() ) {
 			<div class="summary entry-summary">
 				<?php echo '<h1 class="custom-product-title entry-title">' . $product->get_name() . '</h1>';?>
 				<?php if ( $product->get_sku() ) {
-        			echo '<p class="product-sku">Mã sản phẩm: ' . $product->get_sku() . '</p>';
+        			echo '<p class="product-sku">Mã sản phẩm: <span>' . $product->get_sku() . '</span></p>';
     			}?>
 				<?php
 				 	if ($product->get_price() === '') {
 						echo '<p class="contact-price">Giá liên hệ</p>';
 					}
-					else{
-						echo '<div class="custom-product-price">';
-						echo $product->get_price_html(); // This displays the product price in the HTML format (includes sale price)
-						echo '</div>';
+					else{?>
+						<div class="custom-product-price">
+							<?php
+							if ( $product->is_on_sale() ) {
+								// Display the sale price (promotional price) first
+								echo '<span class="sale-price">' . wc_price( $product->get_sale_price() ) . '</span>';
+						
+								// Display the regular price (strikethrough for visual indication of discount)
+								echo ' <span class="regular-price-del" style="text-decoration: line-through;">' . wc_price( $product->get_regular_price() ) . '</span>';
+							} else {
+								// If not on sale, just display the regular price
+								echo ' <span class="regular-price">' . wc_price( $product->get_regular_price() ) . '</span>';
+							}?>
+						</div>
+						<?php
 					}
 				?>
 				<?php
 					$excerpt = $product->get_short_description();
 					if ( !empty( $excerpt ) ) {
-						echo '<div class="product-excerpt">' . $excerpt . '</div>';
+						echo '<div class="product-excerpt"> <p>' . $excerpt . '</p> </div>';
 					}
 
 				?>

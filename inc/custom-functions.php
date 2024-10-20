@@ -18,6 +18,7 @@ function xxx_scripts() {
     wp_enqueue_style('responsive-css' , THEME_URL . 'asset/css/responsive.css');
     wp_enqueue_style('aboutus-css' , THEME_URL . 'asset/css/about-us.css');
     wp_enqueue_style('product-css' , THEME_URL . 'asset/css/product.css');
+    wp_enqueue_style('post-css' , THEME_URL . 'asset/css/post.css');
 
     wp_enqueue_script( 'boostrap-js', get_template_directory_uri() . '/asset/js/bootstrap.min.js', array( ), THEME_VERSION, true );
     wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/asset/js/swiper-bundle.min.js', array( ), THEME_VERSION, true );
@@ -283,6 +284,14 @@ add_filter('woocommerce_is_purchasable', 'allow_empty_price_add_to_cart', 10, 2)
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+
+
 if ( !function_exists( 'related_product' ) ) {
     function  related_product() {
         // Get the current product
@@ -335,6 +344,183 @@ if ( !function_exists( 'related_product' ) ) {
     }
 }
 
+add_filter( 'woocommerce_product_categories_widget_dropdown_args', 'wpsites_product_cat_widget' );
+
+function wpsites_product_cat_widget( $args ) {
+global $wp_query;
+
+$args = array(
+    'hierarchical' => 0,
+    'hide_empty' => 0,
+    'parent' => 11,
+    'taxonomy' => 'product_cat',
+    'selected' => isset( $wp_query->query_vars['product_cat'] ) ? $wp_query->query_vars['product_cat'] : '',
+    );
+
+return $args;
+}
+
+if ( !function_exists( 'custom_pagination' ) ) {
+
+    function custom_pagination() {
+
+        global $wp_query;
+        $total = $wp_query->max_num_pages;
+        $big = 99999; // need an unlikely integer
+        if( $total > 1 )  {
+            if( !$current_page = get_query_var('paged') )
+                $current_page = 1;
+            if( get_option('permalink_structure') ) {
+                $format = 'page/%#%/';
+            } else {
+                $format = '&paged=%#%';
+            }
+            
+            // Generate pagination links as an array
+            $pagination_links = paginate_links(array(
+                'base'			=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                'format'		=> $format,
+                'current'		=> max( 1, get_query_var('paged') ),
+                'total' 		=> $total,
+                'mid_size'		=> 3,
+                'type' 			=> 'array', // Get the links as an array
+                'prev_text'  => __('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg> Trước'),
+                'next_text'  => __('Sau <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>'),
+            ));
+
+            // Check if pagination links are available
+            if ( is_array( $pagination_links ) ) {
+                echo '<ul class="pagination">';
+
+                // Display the prev link - always show it, but disable if on the first page
+                if ( $current_page > 1 ) {
+                    // If not on the first page, show active prev link
+                    echo "<li class='prev-page'><a href='" . get_pagenum_link( $current_page - 1 ) . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg> Trước</a></li>";
+                } else {
+                    // On the first page, show disabled prev link
+                    echo "<li class='prev-page disabled'><span><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M10.6667 19L4 12M4 12L10.6667 5M4 12L20 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg> Trước</span></li>";
+                }
+
+                // Group the page numbers in a separate div
+                echo '<li><div class="page-number-group">';
+                foreach ( $pagination_links as $link ) {
+                    if ( strpos( $link, 'prev' ) === false && strpos( $link, 'next' ) === false ) {
+                        echo "$link";
+                    }
+                }
+                echo '</div></li>';
+
+                // Display the next link - always show it, but disable if on the last page
+                if ( $current_page < $total ) {
+                    // If not on the last page, show active next link
+                    echo "<li class='next-page'><a href='" . get_pagenum_link( $current_page + 1 ) . "'>Sau <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg></a></li>";
+                } else {
+                    // On the last page, show disabled next link
+                    echo "<li class='next-page disabled'><span>Sau <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12' stroke='#353535' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg></span></li>";
+                }
+
+                echo '</ul>';
+            }
+        }
+    }
+}
+
+if ( !function_exists( 'related_posts' ) ){
+    function  related_posts() {
+        $posttype = get_post_type();
+        if ( $posttype == 'post' ) {
+            $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+            $args = array(
+                'cat'                 => $categories,
+                'post__not_in'        => array(get_the_id()),
+                'showposts'           => 3,
+                'ignore_sticky_posts' => 1,
+                'orderby'             => 'rand',
+            );
+        }
+        $related_post = new wp_query($args);
+        if( $related_post->have_posts() ){
+            ?>
+            <div class="show-related container-fluid">
+                <div class="related-title-block">
+                    <div class="related-title">
+                        <?php
+                        the_category(', ');
+                        ?>
+                    </div>
+                    <?php $posttype = get_post_type();
+                    if ( $posttype == 'post' ) {
+                        global $post;
+                        $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+                        $category_link = get_category_link( $categories[0] );
+                        ?>
+                        <div class="show-all">
+                            <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#002D4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+                            </a>
+                        </div>
+
+                    <?php } ?>
+                </div>
+                <div class="related-post-content">
+                    <?php while ($related_post->have_posts()){
+                        $related_post->the_post();
+                        $url_thumbnail = get_the_post_thumbnail_url();
+                        global $post;
+                        ?>
+                        <article class="item" id="post-<?php esc_attr(the_ID()); ?>" <?php post_class(); ?>>
+                                <div class="entry-image">
+                                    <?php if ($url_thumbnail) : ?>
+                                        <div class="post-thumbnail">
+                                            <a href="<?php the_permalink() ?>" class="cct-image-wrapper">
+                                                <img src="<?php echo $url_thumbnail ?>" alt="<?php the_title(); ?>"/>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="inner">
+                                        <div class="entry-title">
+                                            <h1><?php echo the_title(); ?></h1>
+                                        </div>
+                                        <div class="entry-summary">
+								            <?php the_excerpt(); ?>
+							            </div>
+                                        <div class="readmore-block">
+                                            <a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" class="entry-readmore">
+                                                <?php echo esc_html__('đọc thêm', 'cct'); ?>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </article>
+                    <?php } ?>
+                </div>
+                <?php $posttype = get_post_type();
+                if ( $posttype == 'post' ) {
+                    global $post;
+                    $categories = wp_get_post_categories(get_the_id(), array('orderby' => 'parent', ));
+                    $category_link = get_category_link( $categories[0] );
+                    ?>
+                    <div class="show-all show-all-mobile">
+                        <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.77 6C5.77 5.58579 6.10579 5.25 6.52 5.25H19C19.4142 5.25 19.75 5.58579 19.75 6V18.48C19.75 18.8942 19.4142 19.23 19 19.23C18.5858 19.23 18.25 18.8942 18.25 18.48V7.81066L6.53033 19.5303C6.23744 19.8232 5.76256 19.8232 5.46967 19.5303C5.17678 19.2374 5.17678 18.7626 5.46967 18.4697L17.1893 6.75H6.52C6.10579 6.75 5.77 6.41421 5.77 6Z" fill="#324894"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                <?php } ?>
+            </div>
+
+        <?php   }
+        wp_reset_query();
+    }
+}
 // update product card
 add_action( 'wp_ajax_action_remove_product_from_mini_card', 'handle_remove_product_from_mini_card' );
 add_action( 'wp_ajax_nopriv_action_remove_product_from_mini_card', 'handle_remove_product_from_mini_card' );

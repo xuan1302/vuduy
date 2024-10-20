@@ -32,6 +32,18 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_product_link_open - 10
 	 */
 	do_action( 'woocommerce_before_shop_loop_item' );
+	// Get the product post date
+	$post_date = get_the_date( 'Y-m-d', $product->get_id() );
+	$current_date = date( 'Y-m-d' );
+	$date_diff = ( strtotime( $current_date ) - strtotime( $post_date ) ) / ( 60 * 60 * 24 ); // Difference in days
+
+	// Display "New" label if the product is less than 30 days old
+	if ( $date_diff <= 30 ) {
+		echo '<span class="new-tag">New</span>';
+	}
+	if($product->is_on_sale()) {
+		echo '<span class="product-sale">Sale</span>';
+	}
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item_title.
@@ -47,7 +59,23 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
 	do_action( 'woocommerce_shop_loop_item_title' );
-
+	if ( $product->get_price() ) {
+		if ( $product->is_on_sale() ) {
+			// Display the sale price (promotional price) first
+			echo '<span class="sale-price">' . wc_price( $product->get_sale_price() ) . '</span>';
+	
+			// Display the regular price (strikethrough for visual indication of discount)
+			echo ' <span class="regular-price-del" style="text-decoration: line-through;">' . wc_price( $product->get_regular_price() ) . '</span>';
+		} else {
+			// If not on sale, just display the regular price
+			echo ' <span class="regular-price">' . wc_price( $product->get_regular_price() ) . '</span>';
+		}
+    } else {
+        // Display the full product description if there is no price
+        echo '<div class="woocommerce-product-details__full-description">';
+        echo apply_filters( 'the_content', $post->post_content );  // Displays full product description
+        echo '</div>';
+    }
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *

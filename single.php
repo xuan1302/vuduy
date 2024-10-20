@@ -6,34 +6,49 @@
  *
  * @package Anonymous
  */
-
+if (!defined('ABSPATH')) {
+    return;
+}
 get_header();
+$description = get_field("single_description");
 ?>
 
-	<main id="primary" class="site-main container">
+    <main id="primary" class="site-main single-page container">
+        <div class="content-single-page">
+            <div class="row">
+                <div class="single-content col-12">
+                    <div class="single-wrapper">
+                        <div class="banner">
+                            <div class="single-title">
+                            <h1><?php the_title()?></h1>
+                            </div>
+                            <div class="date">
+                                <p><?php echo get_the_date( 'd-m-Y' ); ?>
+                                <span>- by Hoa Binh Hotel</span></p>
+                            </div>
+                        </div>
+                        <div class="single-description">
+                            <p><?php echo $description ?></p>
+                        </div>
+                        <div class="inner-content">
+                            <?php
+                            the_content();
+                            ?>
+                        </div>
+                    </div>
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
 
-			get_template_part( 'template-parts/content', get_post_type() );
+                </div>
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'anonymous' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'anonymous' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
+            </div>
+        </div>
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
 
-		endwhile; // End of the loop.
-		?>
-
-	</main><!-- #main -->
+    </main>
+    <!-- #main -->
+    <div class="related-post">
+        <?php  related_posts() ?>
+    </div>
 
 <?php
 // get_sidebar();
