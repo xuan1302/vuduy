@@ -171,6 +171,9 @@
         font-size: 24px;
         padding: 24px 0 16px 0;
     }
+    .template-search .page-title{
+        font-size: 24px;
+    }
 }
 @media only screen and (max-width: 767px) {
     .about-us-home .content{

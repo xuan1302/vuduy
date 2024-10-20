@@ -1640,6 +1640,19 @@ ul {
 .numberInput{
     width: 50px;
 }
-.error404 .custom-breadcrumb{
+.error404 .custom-breadcrumb, .search-results .custom-breadcrumb{
     display: none;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+.template-search{
+    padding-top: 64px;
+}
+.template-search .page-title{
+    margin-bottom: 25px;
+    font-size: 28px;
 }
