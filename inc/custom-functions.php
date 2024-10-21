@@ -445,7 +445,7 @@ if ( !function_exists( 'related_posts' ) ){
         $related_post = new wp_query($args);
         if( $related_post->have_posts() ){
             ?>
-            <div class="show-related container-fluid">
+            <div class="show-related container">
                 <div class="related-title-block">
                     <div class="related-title">
                         <?php
@@ -459,22 +459,22 @@ if ( !function_exists( 'related_posts' ) ){
                         $category_link = get_category_link( $categories[0] );
                         ?>
                         <div class="show-all">
-                            <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết
+                            <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem tất cả
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#002D4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
+                                    <path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>   
                             </a>
                         </div>
 
                     <?php } ?>
                 </div>
-                <div class="related-post-content">
+                <div class="related-post-content row">
                     <?php while ($related_post->have_posts()){
                         $related_post->the_post();
                         $url_thumbnail = get_the_post_thumbnail_url();
                         global $post;
                         ?>
-                        <article class="item" id="post-<?php esc_attr(the_ID()); ?>" <?php post_class(); ?>>
+                        <article class="item col-xl-4 col-12" id="post-<?php esc_attr(the_ID()); ?>" <?php post_class(); ?>>
                                 <div class="entry-image">
                                     <?php if ($url_thumbnail) : ?>
                                         <div class="post-thumbnail">
@@ -494,7 +494,9 @@ if ( !function_exists( 'related_posts' ) ){
                                             <a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" class="entry-readmore">
                                                 <?php echo esc_html__('đọc thêm', 'cct'); ?>
                                             </a>
-
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -508,8 +510,9 @@ if ( !function_exists( 'related_posts' ) ){
                     $category_link = get_category_link( $categories[0] );
                     ?>
                     <div class="show-all show-all-mobile">
-                        <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem thêm bài viết<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.77 6C5.77 5.58579 6.10579 5.25 6.52 5.25H19C19.4142 5.25 19.75 5.58579 19.75 6V18.48C19.75 18.8942 19.4142 19.23 19 19.23C18.5858 19.23 18.25 18.8942 18.25 18.48V7.81066L6.53033 19.5303C6.23744 19.8232 5.76256 19.8232 5.46967 19.5303C5.17678 19.2374 5.17678 18.7626 5.46967 18.4697L17.1893 6.75H6.52C6.10579 6.75 5.77 6.41421 5.77 6Z" fill="#324894"/>
+                        <a href="<?php echo esc_url( $category_link ); ?>" title="Category Name">Xem tất cả
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M13.3333 5L20 12M20 12L13.3333 19M20 12L4 12" stroke="#353535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
