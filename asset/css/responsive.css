@@ -8,6 +8,11 @@
         max-width: 1326px;
     }
 }
+@media only screen and (max-width: 1399px) {
+    .img-slider-bg {
+        min-height: 550px;
+    }
+}
 /*@media only screen and (max-width: 1440px) {*/
 /*    .container, .container-lg, .container-md, .container-sm, .container-xl {*/
 /*        max-width: 960px;*/
