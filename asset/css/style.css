@@ -720,11 +720,17 @@ ul {
     display: block;
 }
 .list-cat-loop .item .link-c span{
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
 }
 .list-cat-loop .item:hover .link-c span{
     margin-right: 8px;
+    visibility: visible;
     display: inline-block;
+    opacity: 1;
+    position: initial;
+    transition: 0.3s all;
 }
 .list-cat-loop .item .link-c:hover{
     color: #004A06;
