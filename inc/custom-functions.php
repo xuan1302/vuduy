@@ -576,3 +576,5 @@ function enqueue_custom_script_for_specific_template() {
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_script_for_specific_template');
+
+add_filter('wc_add_to_cart_message_html', '__return_null');
