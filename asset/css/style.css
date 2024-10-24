@@ -1683,3 +1683,12 @@ input[type="search"]::-webkit-search-results-decoration {
         background-position: center;
     }
 }
+.custom-quantity-input{
+    -moz-appearance: textfield;
+}
+.custom-quantity-input::-webkit-outer-spin-button,
+.custom-quantity-input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none; /* Chrome, Safari, and Opera */
+    margin: 0;
+}
