@@ -44,8 +44,9 @@
       }
   );
   setTimeout(() => {
-    $('#tab-title-custom_tab_policy').addClass('active');
-    $('#tab-custom_tab_policy').show();
+    $('.wc-tabs li:nth-child(1)').addClass('active');
+    const aria = $('.wc-tabs li:nth-child(1)').find('a').attr('href')
+    $(aria).show();
     $('.wc-tabs li a, .woocommerce-tabs ul.tabs li a').on('click', function(e) {
       e.preventDefault();
       // Remove active class from all tabs
