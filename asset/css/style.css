@@ -469,11 +469,14 @@ ul {
 .item-process .icon:after{
     content: '';
     position: absolute;
-    width: 110%;
+    width: 150%;
     height: 1px;
     background-color: #DCDCDC;
     bottom: -25px;
     left: 50%;
+}
+.content-process .item-process:nth-child(3) .icon:after{
+    width: 105%;
 }
 .item-process .icon:before{
     content: '';
