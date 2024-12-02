@@ -12,7 +12,7 @@ $cart_items = WC()->cart->get_cart();
                 <span class="process-number">1</span>
                 <span class="title">Điền thông tin liên hệ</span>
             </div>
-            <div class="item-process">
+            <div class="item-process <?php echo isset($_GET['isConfirm']) ? 'active' : ''; ?>">
                 <span class="process-number">2</span>
                 <span class="title">Xác nhận thông tin</span>
             </div>

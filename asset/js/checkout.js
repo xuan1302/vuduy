@@ -23,11 +23,11 @@
     $(document).on('wpcf7mailsent', function(event) {
         var formId = event.detail.contactFormId;
         console.log('Form ID: ' + formId);
-        // if (formId == '148') {
-        //     var url = new URL(window.location.href);
-        //     url.searchParams.set('isConfirm', 'true');
-        //     window.history.pushState({}, '', url);
-        //     location.reload();
-        // }
+        if (formId == 320) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('isConfirm', 'true');
+            window.history.pushState({}, '', url);
+            location.reload();
+        }
     });
 }(jQuery));

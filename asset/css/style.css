@@ -469,11 +469,14 @@ ul {
 .item-process .icon:after{
     content: '';
     position: absolute;
-    width: 110%;
+    width: 150%;
     height: 1px;
     background-color: #DCDCDC;
     bottom: -25px;
     left: 50%;
+}
+.content-process .item-process:nth-child(3) .icon:after{
+    width: 105%;
 }
 .item-process .icon:before{
     content: '';
@@ -1645,6 +1648,13 @@ ul {
 }
 .numberInput{
     width: 50px;
+    -moz-appearance: textfield;
+}
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button
+{
+    -webkit-appearance: none; /* Chrome, Safari, and Opera */
+    margin: 0;
 }
 .error404 .custom-breadcrumb, .search-results .custom-breadcrumb{
     display: none;
@@ -1661,4 +1671,27 @@ input[type="search"]::-webkit-search-results-decoration {
 .template-search .page-title{
     margin-bottom: 25px;
     font-size: 28px;
+}
+.slide-home .swiper-slide-active .img-slider-bg{
+    animation: zoom-out 10s infinite alternate;
+
+}
+@keyframes zoom-out {
+    0% {
+        background-size: 110%; /* Kích thước ban đầu */
+        background-position: center;
+    }
+    100% {
+        background-size: 100%; /* Kích thước khi zoom */
+        background-position: center;
+    }
+}
+.custom-quantity-input{
+    -moz-appearance: textfield;
+}
+.custom-quantity-input::-webkit-outer-spin-button,
+.custom-quantity-input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none; /* Chrome, Safari, and Opera */
+    margin: 0;
 }
