@@ -45,7 +45,6 @@
   );
   $('.wc-tabs li a, .woocommerce-tabs ul.tabs li a').on('click', function(e) {
     e.preventDefault();
-    console.log('aaaa');
     // Remove active class from all tabs
     $('.wc-tabs li, .woocommerce-tabs ul.tabs li').removeClass('active');
     $('.woocommerce-Tabs-panel').hide();
