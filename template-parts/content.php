@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="date">
                                     <p><?php echo get_the_date( 'd-m-Y' ); ?>
-                                    <span>- by Hoa Binh Hotel</span></p>
+                                    <span>- by Vu Duy Company</span></p>
                                 </div>
                             </div>
                             <div class="single-description">
