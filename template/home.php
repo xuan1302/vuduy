@@ -209,9 +209,10 @@ $myposts_query_duan = get_posts( $args_duan );
                             <?php
                                 $i = 0;
                                 foreach ($danh_muc_san_pham_ban_chay as $item) {
+                                    $category_product = get_term( $item['cat'][0], 'product_cat' );
                                     $i++;
                                     ?>
-                                    <li class="<?php echo ($i == 1) ? 'active' : ''; ?>" data-id="<?php echo $item['cat'][0]; ?>"><?php echo $i === 1 ? 'Tất cả' : $category->name; ?></li>
+                                    <li class="<?php echo ($i == 1) ? 'active' : ''; ?>" data-id="<?php echo $item['cat'][0]; ?>"><?php echo $i === 1 ? 'Tất cả' : $category_product->name; ?></li>
                                 <?php }
                             ?>
                         </ul>
