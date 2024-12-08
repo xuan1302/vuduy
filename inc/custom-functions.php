@@ -578,3 +578,19 @@ function enqueue_custom_script_for_specific_template() {
 add_action('wp_enqueue_scripts', 'enqueue_custom_script_for_specific_template');
 
 add_filter('wc_add_to_cart_message_html', '__return_null');
+
+function change_add_to_cart_text( $button_text ) {
+    // Thay đổi tên nút ở đây
+    return 'Mua Ngay';
+}
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'change_add_to_cart_text' ); // Thay đổi trong trang chi tiết sản phẩm
+add_filter( 'woocommerce_product_add_to_cart_text', 'change_add_to_cart_text' ); // Thay đổi trong trang danh sách sản phẩm
+
+function change_product_tabs_description_title($tabs) {
+    // Thay đổi tên tab 'Description'
+    if ( isset($tabs['description']) ) {
+        $tabs['description']['title'] = 'Thông tin sản phẩm'; // Thay đổi tên tab theo ý muốn
+    }
+    return $tabs;
+}
+add_filter('woocommerce_product_tabs', 'change_product_tabs_description_title');
