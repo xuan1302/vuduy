@@ -581,7 +581,7 @@ add_filter('wc_add_to_cart_message_html', '__return_null');
 
 function change_add_to_cart_text( $button_text ) {
     // Thay đổi tên nút ở đây
-    return 'Mua Ngay';
+    return 'Thêm vào giỏ hàng';
 }
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'change_add_to_cart_text' ); // Thay đổi trong trang chi tiết sản phẩm
 add_filter( 'woocommerce_product_add_to_cart_text', 'change_add_to_cart_text' ); // Thay đổi trong trang danh sách sản phẩm

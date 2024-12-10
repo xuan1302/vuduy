@@ -12,6 +12,10 @@
     spaceBetween: 8,
     loop:true,
     centeredSlides: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
     pagination: {
       el: ".slide-image-pagination",
       clickable: true,
